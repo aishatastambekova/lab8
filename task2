@@ -1,11 +1,19 @@
+#task 2.1 2.2
 import requests
-random_id = random.randint(1, 826)
+import random
+cartoon_id = random.randint(1, 826)
+url = f"https://rickandmortyapi.com/api/character/{cartoon_id}"
+rsp = requests.get(url)
 
-url = f'https://rickandmortyapi.com/api/character/{random_id}'
-response = requests.get(url)
-data = response.json()
-print(data)
-print(data.keys())
+if rsp.status_code == 200:
+    json_rsp = rsp.json()
+    print(json_rsp)
+
+    keys = json_rsp.keys()
+    print(f"\nКлючи структуры JSON: {keys}")
+else:
+    print(f"Ошибка. Код состояния: {rsp.status_code}")
+
 
 #task 2.3
 import requests
